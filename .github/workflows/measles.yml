@@ -19,10 +19,9 @@ jobs:
 
       - name: Install packages
         run: |
-          install.packages("tidyverse")
-          install.packages("jsonlite") # if needed for API calls
-          install.packages("DatawRappr") # if needed for API calls
-        shell: Rscript {0}
+          Rscript -e 'install.packages(c("jsonlite", "remotes"), repos="https://cloud.r-project.org")'
+          Rscript -e 'remotes::install_github("jbkunst/DatawRappr")'
+          Rscript -e 'install.packages(c("tidyverse"), repos="https://cloud.r-project.org")'
 
       - name: Run R script
         env: 
