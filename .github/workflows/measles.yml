@@ -20,7 +20,7 @@ jobs:
       - name: Install packages
         run: |
           Rscript -e 'install.packages(c("jsonlite", "remotes"), repos="https://cloud.r-project.org")'
-          Rscript -e 'remotes::install_github("jbkunst/DatawRappr")'
+          Rscript -e 'remotes::install_github("munichrocker/DatawRappr")'
           Rscript -e 'install.packages(c("tidyverse"), repos="https://cloud.r-project.org")'
 
       - name: Run R script
