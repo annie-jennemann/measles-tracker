@@ -33,8 +33,11 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          Rscript -e 'install.packages(c("tidyverse", "jsonlite", "remotes", "magick", "usethis"), repos="https://cloud.r-project.org")'
+          mkdir -p ~/Rlib
+          echo 'R_LIBS_USER=~/Rlib' >> ~/.Renviron
+          Rscript -e 'install.packages(c("tidyverse", "jsonlite", "remotes", "magick", "usethis"), repos="https://cloud.r-project.org", quiet = FALSE)'
           Rscript -e 'remotes::install_github("munichrocker/DatawRappr", auth_token=Sys.getenv("GITHUB_PAT"))'
+          Rscript -e 'if (!require("tidyverse")) stop("tidyverse did not install")'
 
       - name: Run R script
         env: 
