@@ -28,14 +28,16 @@ jobs:
             pandoc \
             git
 
-      - name: Install packages
+      - name: Install R packages (including devtools)
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          Rscript -e 'install.packages(c("tidyverse"), repos="https://cloud.r-project.org")'
-          Rscript -e 'install.packages(c("jsonlite", "remotes"), repos="https://cloud.r-project.org")'
-          Rscript -e 'remotes::install_github("munichrocker/DatawRappr")'
+          Rscript -e 'install.packages(c("tidyverse", "jsonlite", "remotes", "devtools"), repos="https://cloud.r-project.org")'
+          Rscript -e 'remotes::install_github("munichrocker/DatawRappr", auth_token=Sys.getenv("GITHUB_PAT"))'
 
       - name: Run R script
         env: 
           API_KEY: ${{ secrets.DW_API_KEY }}
           CHART_KEY: ${{ secrets.CHART_KEY }}
         run: Rscript measles-scraper.R
+
