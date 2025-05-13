@@ -25,10 +25,11 @@ jobs:
             libssl-dev \
             libgit2-dev \
             libxml2-dev \
+            libmagick++-dev \
             pandoc \
             git
 
-      - name: Install R packages (including devtools)
+      - name: Install R packages
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -40,4 +41,5 @@ jobs:
           API_KEY: ${{ secrets.DW_API_KEY }}
           CHART_KEY: ${{ secrets.CHART_KEY }}
         run: Rscript measles-scraper.R
+
 
