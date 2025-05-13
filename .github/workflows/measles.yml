@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   run-r-script:
@@ -26,8 +26,19 @@ jobs:
             libgit2-dev \
             libxml2-dev \
             libmagick++-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
+            libfontconfig1-dev \
             pandoc \
             git
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ~/Rlib
+          key: ${{ runner.os }}-R-${{ hashFiles('**/scripts/*.R') }}
+          restore-keys: |
+            ${{ runner.os }}-R-
 
       - name: Install R packages
         env:
@@ -35,15 +46,20 @@ jobs:
         run: |
           mkdir -p ~/Rlib
           echo 'R_LIBS_USER=~/Rlib' >> ~/.Renviron
-          Rscript -e 'install.packages(c("tidyverse", "jsonlite", "remotes", "magick", "usethis"), repos="https://cloud.r-project.org", quiet = FALSE)'
-          Rscript -e 'remotes::install_github("munichrocker/DatawRappr", auth_token=Sys.getenv("GITHUB_PAT"))'
-          Rscript -e 'if (!require("tidyverse")) stop("tidyverse did not install")'
+          echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >> ~/.Rprofile
+          Rscript -e 'install.packages("tidyverse", dependencies = TRUE, lib="~/Rlib")'
+          Rscript -e 'install.packages(c("jsonlite", "remotes", "magick", "usethis"), dependencies = TRUE, lib="~/Rlib")'
+          Rscript -e 'remotes::install_github("munichrocker/DatawRappr", lib="~/Rlib", auth_token=Sys.getenv("GITHUB_PAT"))'
+          Rscript -e '.libPaths("~/Rlib"); if (!require("tidyverse", lib.loc = "~/Rlib")) stop("tidyverse did not install")'
 
       - name: Run R script
-        env: 
+        env:
           API_KEY: ${{ secrets.DW_API_KEY }}
           CHART_KEY: ${{ secrets.CHART_KEY }}
-        run: Rscript "scripts/measles.R"
+        run: |
+          . ~/.Renviron
+          Rscript "scripts/measles.R"
+
 
 
 
