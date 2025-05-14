@@ -21,7 +21,7 @@ datawrapper_auth(api_key =  api_key, overwrite=TRUE)
 
 ## load data
 
-weekly_us <- fromJSON("data1")
+weekly_us <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesWeekly.json")
 
 ## Changing week end to date and also making new dates so that it can be added to the note
 
@@ -71,7 +71,7 @@ dw_publish_chart(measles_weekly)
 
 ## load data
 
-state <- fromJSON("data2") %>% filter(year == "2025")
+state <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesMap.json") %>% filter(year == "2025")
 
 ## Update data
 
@@ -125,7 +125,7 @@ dw_publish_chart(measles_map)
 
 ## load data
 
-annual_cases <- fromJSON("data3") %>% filter(filter == "2000-Present*")
+annual_cases <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesYear.json") %>% filter(filter == "2000-Present*")
 
 ## update data
 
