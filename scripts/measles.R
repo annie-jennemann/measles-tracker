@@ -21,7 +21,7 @@ datawrapper_auth(api_key =  api_key, overwrite=TRUE)
 
 ## load data
 
-weekly_us <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesWeekly.json")
+weekly_us <- fromJSON(data1)
 
 ## Changing week end to date and also making new dates so that it can be added to the note
 
@@ -58,7 +58,7 @@ dw_edit_chart(measles_weekly,
                 )
               ),
               visualize = list(
-                "base-color" = "#C9562C"
+                "base-color" = "#fdae6b"
               )
               
 )
@@ -71,7 +71,7 @@ dw_publish_chart(measles_weekly)
 
 ## load data
 
-state <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesMap.json") %>% filter(year == "2025")
+state <- fromJSON(data2) %>% filter(year == "2025")
 
 ## Update data
 
@@ -86,12 +86,12 @@ dw_edit_chart(
   byline = "Annie Jennemann/Hearst TV",
   intro = paste("<i>Data as of the week ending", last_date, '</i><br>
 <br>
-<b style="border-right:18px solid #F7E5DE;"></b>&nbsp;0&nbsp;&nbsp;
-<b style="border-right:18px solid #F0CABC;"></b>&nbsp;1-9&nbsp;&nbsp;
-<b style="border-right:18px solid #E5A28A;"></b>&nbsp;10-49&nbsp;&nbsp;
-<b style="border-right:18px solid #DA7B58;"></b>&nbsp;50-99&nbsp;&nbsp;
-<b style="border-right:18px solid #C9562C;"></b>&nbsp;100-249&nbsp;&nbsp;
-<b style="border-right:18px solid #A14523;"></b>&nbsp;250+'),
+<b style="border-right:18px solid #feedde;"></b>&nbsp;0&nbsp;&nbsp;
+<b style="border-right:18px solid #fdd0a2;"></b>&nbsp;1-9&nbsp;&nbsp;
+<b style="border-right:18px solid #fdae6b;"></b>&nbsp;10-49&nbsp;&nbsp;
+<b style="border-right:18px solid #fd8d3c;"></b>&nbsp;50-99&nbsp;&nbsp;
+<b style="border-right:18px solid #e6550d;"></b>&nbsp;100-249&nbsp;&nbsp;
+<b style="border-right:18px solid #a63603;"></b>&nbsp;250+'),
   publish = list(
     blocks = list("get-the-data" = FALSE)
   ),
@@ -106,12 +106,12 @@ dw_edit_chart(
     colorscale = list(
       enabled = TRUE,
       map = list(
-        "250+" = "#A14523",
-        "100-249" = "#C9562C",
-        "50-99" = "#DA7B58",
-        "10-49" = "#E5A28A",
-        "1-9" = "#F0CABC",
-        "0" = "#F7E5DE"
+        "250+" = "#a63603",
+        "100-249" = "#e6550d",
+        "50-99" = "#fd8d3c",
+        "10-49" = "#fdae6b",
+        "1-9" = "#fdd0a2",
+        "0" = "#feedde"
       )
     )
   )
@@ -125,7 +125,7 @@ dw_publish_chart(measles_map)
 
 ## load data
 
-annual_cases <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesYear.json") %>% filter(filter == "2000-Present*")
+annual_cases <- fromJSON(data3) %>% filter(filter == "2000-Present*")
 
 ## update data
 
@@ -143,7 +143,7 @@ dw_edit_chart(
     blocks = list("get-the-data" = FALSE)
   ),
   visualize = list(
-    "base-color" = "#D6842F"
+    "base-color" = "#fdae6b"
   )
 )
 
