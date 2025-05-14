@@ -34,15 +34,32 @@ dates <- dates %>% mutate(week_end2 = gsub(" 0", " ", dates$week_end2))
 
 dw_data_to_chart(weekly_us, measles_weekly)
 
-## Pull out last date
+# Pull out last date
 
 last_date = tail(dates$week_end2, n=1)
+
+## pull total cases
+
+total_cases_25 <- weekly_us %>% filter(week_end > "2024-12-28") %>% mutate(cases = as.numeric(cases)) %>% summarise(total_cases = sum(cases))
+
+total_cases_25 <- prettyNum(total_cases_25, big.mark = ",", scientific = FALSE)
+
+## pull today's date
+
+today <- Sys.Date()
+
+today <- data_frame(today)
+
+today <- today %>% mutate(today = format(today, format = "%B %d"))
 
 ## chart properties
 
 dw_edit_chart(measles_weekly, 
               title = "Confirmed weekly cases of measles in the U.S.",
-              intro = paste("<i>Data as of the week ending",last_date,"</i>"),
+              source_name = "Centers for Disease Control and Prevention",
+              byline = "Annie Jennemann/Hearst TV",
+              intro = paste("There have been ",total_cases_25,"positive measles cases in 2025."),
+              annotate = paste("<i>Chart last updated",today,"<br>Last data reported for the week ending ",last_date,"</i>"),
               publish = list(
                 "blocks" = list(
                   "get-the-data" = FALSE)
@@ -55,7 +72,7 @@ dw_edit_chart(measles_weekly,
                 )
               ),
               visualize = list(
-                "base-color" = "#fdae6b"
+                "base-color" = "#D6842F"
               )
               
 )
@@ -74,6 +91,10 @@ state <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesMap.json
 
 dw_data_to_chart(state, measles_map)
 
+## states with cases
+
+count_states <- state %>% filter(cases_range != "0") %>% summarise(count = n())
+
 ## chart properties
 
 dw_edit_chart(
@@ -81,14 +102,14 @@ dw_edit_chart(
   title = "Confirmed measles cases by state",
   source_name = "Centers for Disease Control and Prevention",
   byline = "Annie Jennemann/Hearst TV",
-  intro = paste("<i>Data as of the week ending", last_date, '</i><br>
-<br>
+  intro = paste("There have been",count_states," states with positive cases of measles in 2025.",'<br><br>
 <b style="border-right:18px solid #feedde;"></b>&nbsp;0&nbsp;&nbsp;
 <b style="border-right:18px solid #fdd0a2;"></b>&nbsp;1-9&nbsp;&nbsp;
 <b style="border-right:18px solid #fdae6b;"></b>&nbsp;10-49&nbsp;&nbsp;
 <b style="border-right:18px solid #fd8d3c;"></b>&nbsp;50-99&nbsp;&nbsp;
 <b style="border-right:18px solid #e6550d;"></b>&nbsp;100-249&nbsp;&nbsp;
 <b style="border-right:18px solid #a63603;"></b>&nbsp;250+'),
+  annotate = paste("<i>Chart last updated",today,".<br>CDC data updates weekly on Friday's."),
   publish = list(
     blocks = list("get-the-data" = FALSE)
   ),
@@ -135,12 +156,13 @@ dw_edit_chart(
   title = "Confirmed measles cases by year, 2000-2025",
   source_name = "Centers for Disease Control and Prevention",
   byline = "Annie Jennemann/Hearst TV",
-  intro = paste("<i>Data as of the week ending", last_date),
+  intro = paste("There have been ",total_cases_25,"positive measles cases in 2025."),
+  annotate = paste("<i>Chart last updated",today,".<br>CDC data updates weekly on Friday's."),
   publish = list(
     blocks = list("get-the-data" = FALSE)
   ),
   visualize = list(
-    "base-color" = "#fdae6b"
+    "base-color" = "#D6842F"
   )
 )
 
