@@ -52,30 +52,58 @@ today <- data_frame(today)
 
 today <- today %>% mutate(today = format(today, format = "%B %d"))
 
-## chart properties
+## compare data
+write_csv(weekly_us, "last_weekly_us.csv")
 
-dw_edit_chart(measles_weekly, 
-              title = "Confirmed weekly cases of measles in the U.S.",
-              source_name = "Centers for Disease Control and Prevention",
-              byline = "Annie Jennemann/Hearst TV",
-              intro = paste("There have been ",total_cases_25,"positive measles cases in 2025."),
-              annotate = paste("<i>Chart last updated",today,"<br>Last data reported for the week ending ",last_date,"</i>"),
-              publish = list(
-                "blocks" = list(
-                  "get-the-data" = FALSE)
-              ),
-              data = list(
-                "column-format" = list(
-                  "week_end" = list(
-                    "type" = "date"
+previous_data_path <- "last_weekly_us.csv"
+
+if (file.exists(previous_data_path)) {
+  previous_data <- read_csv(previous_data_path, col_types = cols())
+} else {
+  previous_data <- tibble()
+}
+
+data_changed <- !identical(weekly_us, previous_data)
+
+if (data_changed) {
+  message("Data has changed. Updating chart and timestamp...")
+  
+  # Save current data for next comparison
+  write_csv(weekly_us, previous_data_path)
+  
+  # Update Datawrapper chart
+  dw_data_to_chart(weekly_us, measles_weekly)
+  
+  # ... rest of your chart update code (last_date, total_cases_25, etc.)
+  # make sure all this is inside the `if (data_changed)` block
+  
+  dw_edit_chart(measles_weekly, 
+                title = "Confirmed weekly cases of measles in the U.S.",
+                source_name = "Centers for Disease Control and Prevention",
+                byline = "Annie Jennemann/Hearst TV",
+                intro = paste("There have been ",total_cases_25,"positive measles cases in 2025."),
+                annotate = paste("<i>Chart last updated",today,"<br>Last data reported for the week ending ",last_date,"</i>"),
+                publish = list(
+                  "blocks" = list(
+                    "get-the-data" = FALSE)
+                ),
+                data = list(
+                  "column-format" = list(
+                    "week_end" = list(
+                      "type" = "date"
+                    )
                   )
+                ),
+                visualize = list(
+                  "base-color" = "#D6842F"
                 )
-              ),
-              visualize = list(
-                "base-color" = "#D6842F"
-              )
-              
-)
+  )
+  
+  dw_publish_chart(measles_weekly)
+} else {
+  message("No changes detected in data. Skipping update.")
+}
+
 
 ## publish chart
 
@@ -109,7 +137,7 @@ dw_edit_chart(
 <b style="border-right:18px solid #fd8d3c;"></b>&nbsp;50-99&nbsp;&nbsp;
 <b style="border-right:18px solid #e6550d;"></b>&nbsp;100-249&nbsp;&nbsp;
 <b style="border-right:18px solid #a63603;"></b>&nbsp;250+'),
-  annotate = paste("<i>Chart last updated",today,".<br>CDC data updates weekly on Friday's."),
+  annotate = paste("CDC data updates weekly on Friday's."),
   publish = list(
     blocks = list("get-the-data" = FALSE)
   ),
