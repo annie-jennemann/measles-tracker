@@ -31,10 +31,24 @@ if (file.exists(previous_data_path)) {
   previous_data <- tibble()
 }
 
-data_changed <- !isTRUE(all.equal(weekly_us, previous_data, check.attributes = FALSE))
+normalize_df <- function(df) {
+  df %>%
+    mutate(
+      week_end = as.Date(week_end),
+      cases = as.numeric(cases)
+    ) %>%
+    arrange(week_end) %>%
+    select(week_end, cases)
+}
 
-print(all.equal(weekly_us, previous_data, check.attributes = FALSE))
+weekly_us <- normalize_df(weekly_us)
+previous_data <- normalize_df(previous_data)
 
+comparison_result <- all.equal(weekly_us, previous_data, check.attributes = FALSE)
+print(comparison_result)
+
+data_changed <- !isTRUE(comparison_result)
+print(paste("Data changed:", data_changed))
 
 
 if (data_changed) {
