@@ -30,10 +30,6 @@ dates <- weekly_us %>% mutate(week_end2 = format(week_end, format = "%B %d"))
 
 dates <- dates %>% mutate(week_end2 = gsub(" 0", " ", dates$week_end2))
 
-## Update measles weekly bar chart, also update time stamp on chart
-
-dw_data_to_chart(weekly_us, measles_weekly)
-
 # Pull out last date
 
 last_date = tail(dates$week_end2, n=1)
