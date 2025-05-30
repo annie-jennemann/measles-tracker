@@ -65,14 +65,6 @@ jobs:
           . ~/.Renviron
           Rscript "scripts/measles.R"
 
-      - name: Commit results
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add last_weekly_us.csv
-          git commit -m "Results from R script" || echo "No changes to commit"
-          git push origin || echo "No changes to commit"-
-
 
 
 
