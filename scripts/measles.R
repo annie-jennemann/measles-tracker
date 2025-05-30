@@ -31,7 +31,9 @@ if (file.exists(previous_data_path)) {
   previous_data <- tibble()
 }
 
-data_changed <- !isTRUE(all_equal(weekly_us, previous_data))
+data_changed <- !isTRUE(all.equal(weekly_us, previous_data, check.attributes = FALSE))
+
+print(all.equal(weekly_us, previous_data, check.attributes = FALSE))
 
 
 
