@@ -89,9 +89,10 @@ if (data_changed) {
 
   system('git config --global user.name "github-actions"')
   system('git config --global user.email "github-actions@github.com"')
-  system("git add last_weekly_us.csv")
+  system("git add scripts/last_weekly_us.csv")
   system('git commit -m "Update saved weekly measles data snapshot" || echo "No changes to commit"')
   system("git push")
+  message("📁 CSV committed and pushed.")
   
 } else {
   message("No changes detected in data. Skipping update.")
