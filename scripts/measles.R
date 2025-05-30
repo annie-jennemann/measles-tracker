@@ -164,12 +164,12 @@ if (map_changed) {
     source_name = "Centers for Disease Control and Prevention",
     byline = "Annie Jennemann/Hearst TV",
     intro = paste("There have been", count_states, "states with positive cases of measles in 2025.", '<br><br>
-<b style="border-right:18px solid #feedde;"></b>&nbsp;0&nbsp;&nbsp;
-<b style="border-right:18px solid #fdd0a2;"></b>&nbsp;1-9&nbsp;&nbsp;
-<b style="border-right:18px solid #fdae6b;"></b>&nbsp;10-49&nbsp;&nbsp;
-<b style="border-right:18px solid #fd8d3c;"></b>&nbsp;50-99&nbsp;&nbsp;
-<b style="border-right:18px solid #e6550d;"></b>&nbsp;100-249&nbsp;&nbsp;
-<b style="border-right:18px solid #a63603;"></b>&nbsp;250+'),
+<b style="border-right:18px solid #fffaf5;"></b>&nbsp;0&nbsp;&nbsp;
+<b style="border-right:18px solid #fee2ba;"></b>&nbsp;1-9&nbsp;&nbsp;
+<b style="border-right:18px solid #fdbc84;"></b>&nbsp;10-49&nbsp;&nbsp;
+<b style="border-right:18px solid #ff842d;"></b>&nbsp;50-99&nbsp;&nbsp;
+<b style="border-right:18px solid #b8200b;"></b>&nbsp;100-249&nbsp;&nbsp;
+<b style="border-right:18px solid #9b4200;"></b>&nbsp;250+'),
     annotate = paste("<i>CDC data as of ",today,".</i>"),
     publish = list(blocks = list("get-the-data" = FALSE)),
     data = list("column-format" = list("week_end" = list(type = "date"))),
@@ -179,12 +179,12 @@ if (map_changed) {
       colorscale = list(
         enabled = TRUE,
         map = list(
-          "250+" = "#a63603",
-          "100-249" = "#e6550d",
-          "50-99" = "#fd8d3c",
-          "10-49" = "#fdae6b",
-          "1-9" = "#fdd0a2",
-          "0" = "#feedde"
+          "250+" = "#9b4200",
+          "100-249" = "#b8200b",
+          "50-99" = "#ff842d",
+          "10-49" = "#fdbc84",
+          "1-9" = "#fee2ba",
+          "0" = "#fffaf5"
         )
       )
     )
