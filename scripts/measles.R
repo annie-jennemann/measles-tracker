@@ -31,7 +31,7 @@ if (file.exists(previous_data_path)) {
   previous_data <- tibble()
 }
 
-data_changed <- !identical(weekly_us, previous_data)
+data_changed <- !isTRUE(all_equal(weekly_us, previous_data))
 
 
 
@@ -98,8 +98,6 @@ if (data_changed) {
   message("No changes detected in data. Skipping update.")
 }
 
-print(paste("Comparing", nrow(weekly_us), "rows vs", nrow(previous_data), "rows"))
-print(dplyr::all_equal(weekly_us, previous_data))
 
 ########### BINNED US MAP ###########
 
