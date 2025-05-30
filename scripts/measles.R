@@ -101,10 +101,6 @@ if (data_changed) {
 }
 
 
-## publish chart
-
-dw_publish_chart(measles_weekly)
-
 ########### BINNED US MAP ###########
 
 ## load data
