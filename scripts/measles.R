@@ -20,37 +20,6 @@ datawrapper_auth(api_key =  api_key, overwrite=TRUE)
 
 weekly_us <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesWeekly.json")
 
-## Changing week end to date and also making new dates so that it can be added to the note
-
-weekly_us <- weekly_us %>% mutate(week_end = as.Date(week_end)) %>% filter(week_start > "2023-12-30")
-
-weekly_us <- weekly_us %>% select(week_end, cases)
-
-dates <- weekly_us %>% mutate(week_end2 = format(week_end, format = "%B %d"))
-
-dates <- dates %>% mutate(week_end2 = gsub(" 0", " ", dates$week_end2))
-
-# Pull out last date
-
-last_date = tail(dates$week_end2, n=1)
-
-## pull total cases
-
-total_cases_25 <- weekly_us %>% filter(week_end > "2024-12-28") %>% mutate(cases = as.numeric(cases)) %>% summarise(total_cases = sum(cases))
-
-total_cases_25 <- prettyNum(total_cases_25, big.mark = ",", scientific = FALSE)
-
-## pull today's date
-
-today <- Sys.Date()
-
-today <- data_frame(today)
-
-today <- today %>% mutate(today = format(today, format = "%B %d"))
-
-## compare data
-write_csv(weekly_us, "last_weekly_us.csv")
-
 previous_data_path <- "last_weekly_us.csv"
 
 if (file.exists(previous_data_path)) {
@@ -61,6 +30,11 @@ if (file.exists(previous_data_path)) {
 
 data_changed <- !identical(weekly_us, previous_data)
 
+
+
+
+
+
 if (data_changed) {
   message("Data has changed. Updating chart and timestamp...")
   
@@ -70,8 +44,31 @@ if (data_changed) {
   # Update Datawrapper chart
   dw_data_to_chart(weekly_us, measles_weekly)
   
-  # ... rest of your chart update code (last_date, total_cases_25, etc.)
-  # make sure all this is inside the `if (data_changed)` block
+  weekly_us <- weekly_us %>% mutate(week_end = as.Date(week_end)) %>% filter(week_start > "2023-12-30")
+
+  weekly_us <- weekly_us %>% select(week_end, cases)
+
+  dates <- weekly_us %>% mutate(week_end2 = format(week_end, format = "%B %d"))
+
+  dates <- dates %>% mutate(week_end2 = gsub(" 0", " ", dates$week_end2))
+
+  # Pull out last date
+
+  last_date = tail(dates$week_end2, n=1)
+
+  ## pull total cases
+
+  total_cases_25 <- weekly_us %>% filter(week_end > "2024-12-28") %>% mutate(cases = as.numeric(cases)) %>% summarise(total_cases = sum(cases))
+
+  total_cases_25 <- prettyNum(total_cases_25, big.mark = ",", scientific = FALSE)
+
+  ## pull today's date
+
+  today <- Sys.Date()
+
+  today <- data_frame(today)
+
+  today <- today %>% mutate(today = format(today, format = "%B %d"))
   
   dw_edit_chart(measles_weekly, 
                 title = "Confirmed weekly cases of measles in the U.S.",
