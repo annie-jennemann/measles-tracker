@@ -89,7 +89,7 @@ if (data_changed) {
 
   system('git config --global user.name "github-actions"')
   system('git config --global user.email "github-actions@github.com"')
-  system("git add scripts/last_weekly_us.csv")
+  system("git add last_weekly_us.csv")
   system('git commit -m "Update saved weekly measles data snapshot" || echo "No changes to commit"')
   system("git push")
   message("📁 CSV committed and pushed.")
@@ -98,7 +98,8 @@ if (data_changed) {
   message("No changes detected in data. Skipping update.")
 }
 
-
+print(paste("Comparing", nrow(weekly_us), "rows vs", nrow(previous_data), "rows"))
+print(dplyr::all_equal(weekly_us, previous_data))
 
 ########### BINNED US MAP ###########
 
