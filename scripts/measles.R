@@ -62,21 +62,21 @@ if (data_changed) {
   
   
   dates <- weekly_us %>% mutate(week_end2 = format(week_end, format = "%B %d"))
-
+  
   dates <- dates %>% mutate(week_end2 = gsub(" 0", " ", dates$week_end2))
-
+  
   # Pull out last date
-
+  
   last_date = tail(dates$week_end2, n=1)
-
+  
   ## pull total cases
-
+  
   total_cases_25 <- weekly_us %>% filter(week_end > "2024-12-28") %>% mutate(cases = as.numeric(cases)) %>% summarise(total_cases = sum(cases))
-
+  
   total_cases_25 <- prettyNum(total_cases_25, big.mark = ",", scientific = FALSE)
-
+  
   ## pull today's date
-
+  
   today <- format(Sys.Date(), "%B %d")
   
   dw_edit_chart(measles_weekly, 
@@ -102,7 +102,7 @@ if (data_changed) {
   )
   
   dw_publish_chart(measles_weekly)
-
+  
   system('git config --global user.name "github-actions"')
   system('git config --global user.email "github-actions@github.com"')
   system("git add last_weekly_us.csv")
@@ -117,89 +117,148 @@ if (data_changed) {
 
 ########### BINNED US MAP ###########
 
-## load data
+state <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesMap.json") %>%
+  filter(year == "2025")
 
-state <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesMap.json") %>% filter(year == "2025")
+# Define snapshot path
+map_data_path <- "last_map_us.csv"
 
-## Update data
+# Load previous snapshot if it exists
+if (file.exists(map_data_path)) {
+  previous_state <- read_csv(map_data_path, col_types = cols())
+  message("previous state-level data loaded.")
+} else {
+  previous_state <- tibble()
+  message("No previous state-level data found.")
+}
 
-dw_data_to_chart(state, measles_map)
+# Normalize and sort data
+normalize_map <- function(df) {
+  df %>%
+    mutate(across(everything(), as.character)) %>%
+    arrange(state)
+}
 
-## states with cases
+state <- normalize_map(state)
+previous_state <- normalize_map(previous_state)
 
-count_states <- state %>% filter(cases_range != "0") %>% summarise(count = n())
+# Compare
+map_changed <- !isTRUE(all.equal(state, previous_state, check.attributes = FALSE))
+print(paste(" Map data changed:", map_changed))
 
-## chart properties
-
-dw_edit_chart(
-  measles_map,
-  title = "Confirmed measles cases by state",
-  source_name = "Centers for Disease Control and Prevention",
-  byline = "Annie Jennemann/Hearst TV",
-  intro = paste("There have been",count_states," states with positive cases of measles in 2025.",'<br><br>
+if (map_changed) {
+  message("State data has changed. Updating map...")
+  
+  # Save new snapshot
+  write_csv(state, map_data_path)
+  
+  # Count states with non-zero cases
+  count_states <- state %>% filter(cases_range != "0") %>% summarise(count = n()) %>% pull(count)
+  
+  # Update chart
+  dw_data_to_chart(state, measles_map)
+  
+  dw_edit_chart(
+    measles_map,
+    title = "Confirmed measles cases by state",
+    source_name = "Centers for Disease Control and Prevention",
+    byline = "Annie Jennemann/Hearst TV",
+    intro = paste("There have been", count_states, "states with positive cases of measles in 2025.", '<br><br>
 <b style="border-right:18px solid #feedde;"></b>&nbsp;0&nbsp;&nbsp;
 <b style="border-right:18px solid #fdd0a2;"></b>&nbsp;1-9&nbsp;&nbsp;
 <b style="border-right:18px solid #fdae6b;"></b>&nbsp;10-49&nbsp;&nbsp;
 <b style="border-right:18px solid #fd8d3c;"></b>&nbsp;50-99&nbsp;&nbsp;
 <b style="border-right:18px solid #e6550d;"></b>&nbsp;100-249&nbsp;&nbsp;
 <b style="border-right:18px solid #a63603;"></b>&nbsp;250+'),
-  annotate = paste("CDC data updates weekly on Friday's."),
-  publish = list(
-    blocks = list("get-the-data" = FALSE)
-  ),
-  data = list(
-    "column-format" = list(
-      "week_end" = list(type = "date")
-    )
-  ),
-  visualize = list(
-    group = "cases_range",
-    "map-color-group" = "cases_range",
-    colorscale = list(
-      enabled = TRUE,
-      map = list(
-        "250+" = "#a63603",
-        "100-249" = "#e6550d",
-        "50-99" = "#fd8d3c",
-        "10-49" = "#fdae6b",
-        "1-9" = "#fdd0a2",
-        "0" = "#feedde"
+    annotate = paste("<i>Chart last updated", today, ".<br>CDC data updates weekly on Friday's."),
+    publish = list(blocks = list("get-the-data" = FALSE)),
+    data = list("column-format" = list("week_end" = list(type = "date"))),
+    visualize = list(
+      group = "cases_range",
+      "map-color-group" = "cases_range",
+      colorscale = list(
+        enabled = TRUE,
+        map = list(
+          "250+" = "#a63603",
+          "100-249" = "#e6550d",
+          "50-99" = "#fd8d3c",
+          "10-49" = "#fdae6b",
+          "1-9" = "#fdd0a2",
+          "0" = "#feedde"
+        )
       )
     )
   )
-)
-
-## publish chart
-
-dw_publish_chart(measles_map)
+  
+  dw_publish_chart(measles_map)
+  
+  # Commit snapshot
+  system("git add last_map_us.csv")
+  system('git commit -m "Update state-level measles map snapshot" || echo "No changes to commit"')
+  system("git push")
+  
+} else {
+  message("No changes detected in state map data.")
+}
 
 ########### YEAR BAR CHART ###########
 
-## load data
+# ---------- YEAR BAR CHART ---------- #
 
-annual_cases <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesYear.json") %>% filter(filter == "2000-Present*")
+# Load annual cases
+annual_cases <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesYear.json") %>%
+  filter(filter == "2000-Present*")
 
-## update data
+# Snapshot path
+annual_data_path <- "last_annual_us.csv"
 
-dw_data_to_chart(annual_cases, measles_annual)
+# Load previous
+if (file.exists(annual_data_path)) {
+  previous_annual <- read_csv(annual_data_path, col_types = cols())
+  message("previous annual data loaded.")
+} else {
+  previous_annual <- tibble()
+  message("⚠️ No previous annual data found.")
+}
 
-## chart properties
+# Normalize
+normalize_annual <- function(df) {
+  df %>%
+    mutate(across(everything(), as.character)) %>%
+    arrange(year)
+}
 
-dw_edit_chart(
-  measles_annual,
-  title = "Confirmed measles cases by year, 2000-2025",
-  source_name = "Centers for Disease Control and Prevention",
-  byline = "Annie Jennemann/Hearst TV",
-  intro = paste("There have been ",total_cases_25,"positive measles cases in 2025."),
-  annotate = paste("<i>Chart last updated",today,".<br>CDC data updates weekly on Friday's."),
-  publish = list(
-    blocks = list("get-the-data" = FALSE)
-  ),
-  visualize = list(
-    "base-color" = "#D6842F"
+annual_cases <- normalize_annual(annual_cases)
+previous_annual <- normalize_annual(previous_annual)
+
+# Compare
+annual_changed <- !isTRUE(all.equal(annual_cases, previous_annual, check.attributes = FALSE))
+print(paste("📊 Annual data changed:", annual_changed))
+
+if (annual_changed) {
+  message("📈 Annual data changed. Updating chart...")
+  
+  write_csv(annual_cases, annual_data_path)
+  
+  dw_data_to_chart(annual_cases, measles_annual)
+  
+  dw_edit_chart(
+    measles_annual,
+    title = "Confirmed measles cases by year, 2000–2025",
+    source_name = "Centers for Disease Control and Prevention",
+    byline = "Annie Jennemann/Hearst TV",
+    intro = paste("There have been", total_cases_25, "positive measles cases in 2025."),
+    annotate = paste("<i>Chart last updated", today, ".<br>CDC data updates weekly on Friday's."),
+    publish = list(blocks = list("get-the-data" = FALSE)),
+    visualize = list("base-color" = "#D6842F")
   )
-)
-
-## publish chart
-
-dw_publish_chart(measles_annual)
+  
+  dw_publish_chart(measles_annual)
+  
+  system("git add last_annual_us.csv")
+  system('git commit -m "Update annual measles snapshot" || echo "No changes to commit"')
+  system("git push")
+  
+} else {
+  message("🚫 No changes detected in annual data.")
+}
