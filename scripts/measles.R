@@ -108,7 +108,7 @@ if (data_changed) {
   system("git add last_weekly_us.csv")
   system('git commit -m "Update saved weekly measles data snapshot" || echo "No changes to commit"')
   system("git push")
-  message("📁 CSV committed and pushed.")
+  message("CSV committed and pushed.")
   
 } else {
   message("No changes detected in data. Skipping update.")
@@ -209,7 +209,6 @@ if (map_changed) {
 annual_cases <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesYear.json") %>%
   filter(filter == "2000-Present*")
 
-# Snapshot path
 annual_data_path <- "last_annual_us.csv"
 
 # Load previous
@@ -218,7 +217,7 @@ if (file.exists(annual_data_path)) {
   message("previous annual data loaded.")
 } else {
   previous_annual <- tibble()
-  message("⚠️ No previous annual data found.")
+  message("No previous annual data found.")
 }
 
 # Normalize
@@ -233,10 +232,10 @@ previous_annual <- normalize_annual(previous_annual)
 
 # Compare
 annual_changed <- !isTRUE(all.equal(annual_cases, previous_annual, check.attributes = FALSE))
-print(paste("📊 Annual data changed:", annual_changed))
+print(paste("Annual data changed:", annual_changed))
 
 if (annual_changed) {
-  message("📈 Annual data changed. Updating chart...")
+  message("Annual data changed. Updating chart...")
   
   write_csv(annual_cases, annual_data_path)
   
@@ -260,5 +259,5 @@ if (annual_changed) {
   system("git push")
   
 } else {
-  message("🚫 No changes detected in annual data.")
+  message("No changes detected in annual data.")
 }
