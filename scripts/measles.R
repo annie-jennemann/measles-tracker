@@ -84,7 +84,7 @@ if (data_changed) {
                 source_name = "Centers for Disease Control and Prevention",
                 byline = "Annie Jennemann/Hearst TV",
                 intro = paste("There have been ",total_cases_25,"positive measles cases in 2025."),
-                annotate = paste("<i>CDC data as of",today,".<br>Data by last day of the week.</i>"),
+                annotate = paste("<i>CDC data as of ",today,".<br>Data by last day of the week.</i>"),
                 publish = list(
                   "blocks" = list(
                     "get-the-data" = FALSE)
@@ -170,7 +170,7 @@ if (map_changed) {
 <b style="border-right:18px solid #fd8d3c;"></b>&nbsp;50-99&nbsp;&nbsp;
 <b style="border-right:18px solid #e6550d;"></b>&nbsp;100-249&nbsp;&nbsp;
 <b style="border-right:18px solid #a63603;"></b>&nbsp;250+'),
-    annotate = paste("<i>CDC data as of",today,"</i>"),
+    annotate = paste("<i>CDC data as of ",today,".</i>"),
     publish = list(blocks = list("get-the-data" = FALSE)),
     data = list("column-format" = list("week_end" = list(type = "date"))),
     visualize = list(
@@ -247,7 +247,7 @@ if (annual_changed) {
     source_name = "Centers for Disease Control and Prevention",
     byline = "Annie Jennemann/Hearst TV",
     intro = paste("There have been", total_cases_25, "positive measles cases in 2025."),
-    annotate = paste("<i>CDC data as of",today,"</i>"),
+    annotate = paste("<i>CDC data as of ",today,".</i>"),
     publish = list(blocks = list("get-the-data" = FALSE)),
     visualize = list("base-color" = "#D6842F")
   )
