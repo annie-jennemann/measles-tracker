@@ -100,6 +100,11 @@ if (data_changed) {
   message("No changes detected in data. Skipping update.")
 }
 
+system('git config --global user.name "github-actions"')
+  system('git config --global user.email "github-actions@github.com"')
+  system("git add last_weekly_us.csv")
+  system('git commit -m "Update saved weekly measles data snapshot" || echo "No changes to commit"')
+  system("git push")
 
 ########### BINNED US MAP ###########
 
