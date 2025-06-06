@@ -4,7 +4,7 @@ Alaska,1-9,2025
 Arizona,0,2025
 Arkansas,1-9,2025
 California,10-49,2025
-Colorado,1-9,2025
+Colorado,10-49,2025
 Connecticut,0,2025
 Delaware,0,2025
 District of Columbia,0,2025
@@ -21,7 +21,7 @@ Louisiana,1-9,2025
 Maine,0,2025
 Maryland,1-9,2025
 Massachusetts,0,2025
-Michigan,1-9,2025
+Michigan,10-49,2025
 Minnesota,1-9,2025
 Mississippi,0,2025
 Missouri,1-9,2025
@@ -41,9 +41,9 @@ Oregon,0,2025
 Pennsylvania,10-49,2025
 Rhode Island,1-9,2025
 South Carolina,0,2025
-South Dakota,0,2025
+South Dakota,1-9,2025
 Tennessee,1-9,2025
-Texas,250+,2025
+Texas,700+,2025
 Utah,0,2025
 Vermont,1-9,2025
 Virginia,1-9,2025
