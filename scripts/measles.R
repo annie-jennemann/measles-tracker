@@ -168,8 +168,8 @@ if (map_changed) {
 <b style="border-right:18px solid #fee2ba;"></b>&nbsp;1-9&nbsp;&nbsp;
 <b style="border-right:18px solid #fdbc84;"></b>&nbsp;10-49&nbsp;&nbsp;
 <b style="border-right:18px solid #ff842d;"></b>&nbsp;50-99&nbsp;&nbsp;
-<b style="border-right:18px solid #b8200b;"></b>&nbsp;100-249&nbsp;&nbsp;
-<b style="border-right:18px solid #9b4200;"></b>&nbsp;250+'),
+<b style="border-right:18px solid #b8200b;"></b>&nbsp;100-250&nbsp;&nbsp;
+<b style="border-right:18px solid #9b4200;"></b>&nbsp;700+'),
     annotate = paste("<i>CDC data as of ",today,".</i>"),
     publish = list(blocks = list("get-the-data" = FALSE)),
     data = list("column-format" = list("week_end" = list(type = "date"))),
@@ -179,8 +179,8 @@ if (map_changed) {
       colorscale = list(
         enabled = TRUE,
         map = list(
-          "250+" = "#9b4200",
-          "100-249" = "#b8200b",
+          "700+" = "#9b4200",
+          "100-250" = "#b8200b",
           "50-99" = "#ff842d",
           "10-49" = "#fdbc84",
           "1-9" = "#fee2ba",
