@@ -1,7 +1,7 @@
 geography,cases_range,year
-Alabama,0,2025
+Alabama,1-9,2025
 Alaska,1-9,2025
-Arizona,1-9,2025
+Arizona,10-49,2025
 Arkansas,1-9,2025
 California,10-49,2025
 Colorado,10-49,2025
@@ -49,5 +49,5 @@ Vermont,1-9,2025
 Virginia,1-9,2025
 Washington,10-49,2025
 West Virginia,0,2025
-Wisconsin,1-9,2025
+Wisconsin,10-49,2025
 Wyoming,1-9,2025
