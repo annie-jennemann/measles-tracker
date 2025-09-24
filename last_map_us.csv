@@ -1,7 +1,7 @@
 geography,cases_range,cases_calendar_year,year
 Alabama,1-9,1,2025
 Alaska,1-9,3,2025
-Arizona,10-49,45,2025
+Arizona,10-49,49,2025
 Arkansas,1-9,8,2025
 California,10-49,20,2025
 Colorado,10-49,27,2025
@@ -9,7 +9,7 @@ Connecticut,0,0,2025
 Delaware,0,0,2025
 District of Columbia,0,0,2025
 Florida,1-9,6,2025
-Georgia,1-9,7,2025
+Georgia,10-49,10,2025
 Hawaii,1-9,2,2025
 Idaho,1-9,3,2025
 Illinois,10-49,11,2025
@@ -25,7 +25,7 @@ Michigan,10-49,27,2025
 Minnesota,1-9,5,2025
 Mississippi,0,0,2025
 Missouri,1-9,6,2025
-Montana,10-49,31,2025
+Montana,10-49,32,2025
 Nebraska,1-9,1,2025
 Nevada,0,0,2025
 New Hampshire,0,0,2025
@@ -44,7 +44,7 @@ South Carolina,1-9,3,2025
 South Dakota,10-49,12,2025
 Tennessee,1-9,7,2025
 Texas,800+,803,2025
-Utah,10-49,24,2025
+Utah,10-49,39,2025
 Vermont,1-9,2,2025
 Virginia,1-9,4,2025
 Washington,10-49,10,2025
