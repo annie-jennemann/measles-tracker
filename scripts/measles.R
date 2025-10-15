@@ -170,7 +170,7 @@ if (map_changed) {
 <b style="border-right:18px solid #ff842d;"></b>&nbsp;50-99&nbsp;&nbsp;
 <b style="border-right:18px solid #b8200b;"></b>&nbsp;100-250&nbsp;&nbsp;
 <b style="border-right:18px solid #9b4200;"></b>&nbsp;800+'),
-    annotate = paste("<i>CDC data as of ",today,".</i>"),
+    annotate = paste("CDC data as of ",today,"."),
     publish = list(blocks = list("get-the-data" = FALSE)),
     data = list("column-format" = list("week_end" = list(type = "date"))),
     visualize = list(
