@@ -159,36 +159,42 @@ if (map_changed) {
   dw_data_to_chart(state, measles_map)
   
   dw_edit_chart(
-    measles_map,
-    title = "Confirmed measles cases by state",
-    source_name = "Centers for Disease Control and Prevention",
-    byline = "Annie Jennemann/Hearst TV",
-    intro = paste("There have been", count_states, "states with positive cases of measles in 2025.", '<br><br>
+  measles_map,
+  title = "Confirmed measles cases by state",
+  source_name = "Centers for Disease Control and Prevention",
+  byline = "Annie Jennemann/Hearst TV",
+  intro = paste("There have been", count_states, "states with positive cases of measles in 2025.", '<br><br>
 <b style="border-right:18px solid #fffaf5;"></b>&nbsp;0&nbsp;&nbsp;
 <b style="border-right:18px solid #fee2ba;"></b>&nbsp;1-9&nbsp;&nbsp;
 <b style="border-right:18px solid #fdbc84;"></b>&nbsp;10-49&nbsp;&nbsp;
 <b style="border-right:18px solid #ff842d;"></b>&nbsp;50-99&nbsp;&nbsp;
 <b style="border-right:18px solid #b8200b;"></b>&nbsp;100-250&nbsp;&nbsp;
 <b style="border-right:18px solid #9b4200;"></b>&nbsp;800+'),
-    annotate = paste("CDC data as of ",today,"."),
-    publish = list(blocks = list("get-the-data" = FALSE)),
-    data = list("column-format" = list("week_end" = list(type = "date"))),
-    visualize = list(
-      group = "cases_range",
-      "map-color-group" = "cases_range",
-      colorscale = list(
-        enabled = TRUE,
-        map = list(
-          "800+" = "#9b4200",
-          "100-250" = "#b8200b",
-          "50-99" = "#ff842d",
-          "10-49" = "#fdbc84",
-          "1-9" = "#fee2ba",
-          "0" = "#fffaf5"
-        )
+  annotate = paste("CDC data as of ",today,"."),
+  publish = list(
+    blocks = list("get-the-data" = FALSE)
+  ),
+  data = list(
+    "column-format" = list(
+      "week_end" = list(type = "date")
+    )
+  ),
+  visualize = list(
+    group = "cases_range",
+    "map-color-group" = "cases_range",
+    colorscale = list(
+      enabled = TRUE,
+      map = list(
+        "800+" = "#9b4200",
+        "100-250" = "#b8200b",
+        "50-99" = "#ff842d",
+        "10-49" = "#fdbc84",
+        "1-9" = "#fee2ba",
+        "0" = "#fffaf5"
       )
     )
   )
+)
   
   dw_publish_chart(measles_map)
   
