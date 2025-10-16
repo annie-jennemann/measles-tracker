@@ -170,7 +170,7 @@ if (map_changed) {
 <b style="border-right:18px solid #ff842d;"></b>&nbsp;50-99&nbsp;&nbsp;
 <b style="border-right:18px solid #b8200b;"></b>&nbsp;100-250&nbsp;&nbsp;
 <b style="border-right:18px solid #9b4200;"></b>&nbsp;800+'),
-  annotate = paste("CDC data as of ",today,"."),
+  annotate = paste("CDC data as of ",today),
   publish = list(
     blocks = list("get-the-data" = FALSE)
   ),
@@ -253,7 +253,7 @@ if (annual_changed) {
     source_name = "Centers for Disease Control and Prevention",
     byline = "Annie Jennemann/Hearst TV",
     intro = paste("There have been", total_cases_25, "positive measles cases in 2025."),
-    annotate = paste("<i>CDC data as of ",today,".</i>"),
+    annotate = paste("CDC data as of ",today),
     publish = list(blocks = list("get-the-data" = FALSE)),
     visualize = list("base-color" = "#D6842F")
   )
