@@ -1,11 +1,11 @@
 geography,cases_range,cases_calendar_year,year
 Alabama,1-9,1,2025
 Alaska,1-9,4,2025
-Arizona,100-250,169,2025
+Arizona,100-250,182,2025
 Arkansas,1-9,8,2025
 California,10-49,23,2025
-Colorado,10-49,32,2025
-Connecticut,0,0,2025
+Colorado,10-49,35,2025
+Connecticut,1-9,1,2025
 Delaware,0,0,2025
 District of Columbia,0,0,2025
 Florida,1-9,7,2025
@@ -40,11 +40,11 @@ Oklahoma,10-49,17,2025
 Oregon,1-9,1,2025
 Pennsylvania,10-49,16,2025
 Rhode Island,1-9,1,2025
-South Carolina,100-250,123,2025
-South Dakota,10-49,12,2025
+South Carolina,100-250,142,2025
+South Dakota,10-49,15,2025
 Tennessee,1-9,8,2025
 Texas,800+,803,2025
-Utah,100-250,115,2025
+Utah,100-250,122,2025
 Vermont,1-9,2,2025
 Virginia,1-9,4,2025
 Washington,10-49,11,2025
