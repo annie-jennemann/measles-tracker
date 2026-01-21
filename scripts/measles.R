@@ -20,7 +20,7 @@ datawrapper_auth(api_key =  api_key, overwrite=TRUE)
 
 weekly_us <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesWeekly.json") %>%
   mutate(week_end = as.Date(week_end)) %>%
-  filter(week_start > "2023-12-30") %>%
+  filter(week_start > "2024-12-30") %>%
   select(week_end, cases)
 
 previous_data_path <- "last_weekly_us.csv"
@@ -71,9 +71,9 @@ if (data_changed) {
   
   ## pull total cases
   
-  total_cases_25 <- weekly_us %>% filter(week_end > "2024-12-28") %>% mutate(cases = as.numeric(cases)) %>% summarise(total_cases = sum(cases))
+  total_cases_26 <- weekly_us %>% filter(week_end > "2026-01-03") %>% mutate(cases = as.numeric(cases)) %>% summarise(total_cases = sum(cases))
   
-  total_cases_25 <- prettyNum(total_cases_25, big.mark = ",", scientific = FALSE)
+  total_cases_26 <- prettyNum(total_cases_26, big.mark = ",", scientific = FALSE)
   
   ## pull today's date
   
@@ -82,9 +82,9 @@ if (data_changed) {
   dw_edit_chart(measles_weekly, 
                 title = "Confirmed weekly cases of measles in the U.S.",
                 source_name = "Centers for Disease Control and Prevention",
-                byline = "Annie Jennemann/Hearst TV",
-                intro = paste("There have been ",total_cases_25,"positive measles cases in 2025."),
-                annotate = paste("<i>CDC data as of ",today,".<br>Data by last day of the week.</i>"),
+                byline = "Annie Jennemann/Get the Facts Data Team",
+                intro = paste("There have been ",total_cases_26,"positive measles cases in 2026."),
+                annotate = paste("<i>Chart updated ",today,"<br>Data by last day of the week.</i>"),
                 publish = list(
                   "blocks" = list(
                     "get-the-data" = FALSE)
@@ -118,7 +118,7 @@ if (data_changed) {
 ########### BINNED US MAP ###########
 
 state <- fromJSON("https://www.cdc.gov/wcms/vizdata/measles/MeaslesCasesMap.json") %>%
-  filter(year == "2025")
+  filter(year == "2026")
 
 # Define snapshot path
 map_data_path <- "last_map_us.csv"
@@ -160,38 +160,17 @@ if (map_changed) {
   
   dw_edit_chart(
   measles_map,
-  title = "Confirmed measles cases by state",
+  title = "Confirmed measles cases by state in 2026",
   source_name = "Centers for Disease Control and Prevention",
-  byline = "Annie Jennemann/Hearst TV",
-  intro = paste("There have been", count_states, "states with positive cases of measles in 2025.", '<br><br>
-<b style="border-right:18px solid #fffaf5;"></b>&nbsp;0&nbsp;&nbsp;
-<b style="border-right:18px solid #fee2ba;"></b>&nbsp;1-9&nbsp;&nbsp;
-<b style="border-right:18px solid #fdbc84;"></b>&nbsp;10-49&nbsp;&nbsp;
-<b style="border-right:18px solid #ff842d;"></b>&nbsp;50-99&nbsp;&nbsp;
-<b style="border-right:18px solid #b8200b;"></b>&nbsp;100-250&nbsp;&nbsp;
-<b style="border-right:18px solid #9b4200;"></b>&nbsp;800+'),
-  annotate = paste("CDC data as of ",today),
+  byline = "Annie Jennemann/Get the Facts Data Team",
+  intro = paste("There have been", count_states, "states with positive cases of measles in 2026."),
+  annotate = paste("Chart updated",today,"."),
   publish = list(
     blocks = list("get-the-data" = FALSE)
   ),
   data = list(
     "column-format" = list(
       "week_end" = list(type = "date")
-    )
-  ),
-  visualize = list(
-    group = "cases_range",
-    "map-color-group" = "cases_range",
-    colorscale = list(
-      enabled = TRUE,
-      map = list(
-        "800+" = "#9b4200",
-        "100-250" = "#b8200b",
-        "50-99" = "#ff842d",
-        "10-49" = "#fdbc84",
-        "1-9" = "#fee2ba",
-        "0" = "#fffaf5"
-      )
     )
   )
 )
@@ -249,14 +228,18 @@ if (annual_changed) {
   
   dw_edit_chart(
     measles_annual,
-    title = "Confirmed measles cases by year, 2000–2025",
-    source_name = "Centers for Disease Control and Prevention",
-    byline = "Annie Jennemann/Hearst TV",
-    intro = paste("There have been", total_cases_25, "positive measles cases in 2025."),
-    annotate = paste("CDC data as of ",today),
-    publish = list(blocks = list("get-the-data" = FALSE)),
-    visualize = list("base-color" = "#D6842F")
+    title = "Confirmed measles cases by year, 2000-2026",
+  source_name = "Centers for Disease Control and Prevention",
+  byline = "Annie Jennemann/Get the Facts Data Team",
+  intro = paste("There have been ",total_cases_26,"positive measles cases in 2026."),
+  annotate = paste("<i>Chart updated ",today,"</i>"),
+  publish = list(
+    blocks = list("get-the-data" = FALSE)
+  ),
+  visualize = list(
+    "base-color" = "#D6842F"
   )
+)
   
   dw_publish_chart(measles_annual)
   
