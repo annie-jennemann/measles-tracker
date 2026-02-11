@@ -1,14 +1,14 @@
 geography,cases_range,cases_calendar_year,year,cases_2026,cases_2025,cases_2024
 Alabama,0,0,2026,0,1,0
 Alaska,0,0,2026,0,4,0
-Arizona,10-49,10,2026,10,214,5
+Arizona,10-49,25,2026,25,216,5
 Arkansas,0,0,2026,0,8,0
-California,1-9,2,2026,2,26,13
+California,1-9,7,2026,7,26,13
 Colorado,0,0,2026,0,35,0
 Connecticut,0,0,2026,0,1,0
 Delaware,0,0,2026,0,0,0
 District of Columbia,0,0,2026,0,0,1
-Florida,1-9,9,2026,9,8,11
+Florida,10-49,13,2026,13,8,11
 Georgia,1-9,1,2026,1,10,5
 Hawaii,0,0,2026,0,2,0
 Idaho,1-9,2,2026,2,14,0
@@ -33,21 +33,21 @@ New Jersey,0,0,2026,0,11,7
 New Mexico,0,0,2026,0,100,2
 New York,0,0,2026,0,26,1
 New York City,0,0,2026,0,15,13
-North Carolina,10-49,10,2026,10,2,1
-North Dakota,0,0,2026,0,36,0
+North Carolina,10-49,12,2026,12,2,1
+North Dakota,1-9,1,2026,1,36,0
 Ohio,1-9,3,2026,3,40,7
-Oklahoma,0,0,2026,0,17,1
+Oklahoma,1-9,1,2026,1,17,1
 Oregon,1-9,5,2026,5,1,31
-Pennsylvania,0,0,2026,0,16,6
+Pennsylvania,1-9,5,2026,5,16,6
 Rhode Island,0,0,2026,0,1,0
-South Carolina,100-500,467,2026,467,323,1
-South Dakota,1-9,5,2026,5,16,1
+South Carolina,500+,546,2026,546,330,1
+South Dakota,1-9,6,2026,6,16,1
 Tennessee,0,0,2026,0,8,4
 Texas,0,0,2026,0,803,1
-Utah,50-99,53,2026,53,187,0
+Utah,50-99,72,2026,72,187,0
 Vermont,0,0,2026,0,2,1
-Virginia,1-9,3,2026,3,6,1
-Washington,1-9,8,2026,8,11,6
+Virginia,1-9,4,2026,4,6,1
+Washington,10-49,16,2026,16,11,6
 West Virginia,0,0,2026,0,0,1
-Wisconsin,1-9,1,2026,1,36,1
+Wisconsin,1-9,2,2026,2,36,1
 Wyoming,0,0,2026,0,15,0
