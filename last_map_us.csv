@@ -1,15 +1,15 @@
 geography,geography_esp,cases_range,cases_calendar_year,year,cases_2026,cases_2025,cases_2024
 Alabama,Alabama,0,0,2026,0,1,0
 Alaska,Alaska,0,0,2026,0,4,0
-Arizona,Arizona,10-49,36,2026,36,221,5
+Arizona,Arizona,10-49,42,2026,42,221,5
 Arkansas,Arkansas,0,0,2026,0,8,0
-California,California,10-49,17,2026,17,26,13
+California,California,10-49,18,2026,18,26,13
 Colorado,Colorado,1-9,1,2026,1,35,0
 Connecticut,Connecticut,0,0,2026,0,1,0
 Delaware,Delaware,0,0,2026,0,0,0
 District of Columbia,Distrito de Columbia,0,0,2026,0,0,1
-Florida,Florida,50-99,64,2026,64,8,11
-Georgia,Georgia,1-9,1,2026,1,10,5
+Florida,Florida,100-499,107,2026,107,8,11
+Georgia,Georgia,1-9,2,2026,2,10,5
 Hawaii,Hawái,0,0,2026,0,2,0
 Idaho,Idaho,1-9,2,2026,2,14,0
 Illinois,Illinois,1-9,2,2026,2,14,67
@@ -22,7 +22,7 @@ Maine,Maine,1-9,5,2026,5,0,0
 Maryland,Maryland,0,0,2026,0,3,1
 Massachusetts,Massachusetts,0,0,2026,0,0,1
 Michigan,Míchigan,0,0,2026,0,29,7
-Minnesota,Minnesota,1-9,5,2026,5,26,65
+Minnesota,Minnesota,10-49,10,2026,10,26,65
 Mississippi,Misisipi,0,0,2026,0,0,0
 Missouri,Misuri,0,0,2026,0,6,2
 Montana,Montana,0,0,2026,0,36,0
@@ -30,24 +30,24 @@ Nebraska,Nebraska,1-9,1,2026,1,5,0
 Nevada,Nevada,0,0,2026,0,2,0
 New Hampshire,Nuevo Hampshire,0,0,2026,0,0,2
 New Jersey,Nueva Jersey,0,0,2026,0,11,7
-New Mexico,Nuevo México,0,0,2026,0,100,2
-New York,Nueva York,0,0,2026,0,26,1
+New Mexico,Nuevo México,1-9,1,2026,1,100,2
+New York,Nueva York,1-9,1,2026,1,26,1
 New York City,Ciudad de Nueva York,1-9,1,2026,1,15,13
-North Carolina,Carolina del Norte,10-49,17,2026,17,2,1
-North Dakota,Dakota del Norte,1-9,6,2026,6,36,0
-Ohio,Ohio,1-9,5,2026,5,40,7
+North Carolina,Carolina del Norte,10-49,18,2026,18,2,1
+North Dakota,Dakota del Norte,10-49,20,2026,20,36,0
+Ohio,Ohio,1-9,9,2026,9,40,7
 Oklahoma,Oklahoma,1-9,1,2026,1,17,1
 Oregon,Oregón,1-9,5,2026,5,1,31
-Pennsylvania,Pensilvania,1-9,5,2026,5,16,6
+Pennsylvania,Pensilvania,10-49,12,2026,12,16,6
 Rhode Island,Rhode Island,0,0,2026,0,1,0
-South Carolina,Carolina del Sur,500+,632,2026,632,329,1
-South Dakota,Dakota del Sur,1-9,6,2026,6,16,1
+South Carolina,Carolina del Sur,500+,653,2026,653,329,1
+South Dakota,Dakota del Sur,1-9,7,2026,7,16,1
 Tennessee,Tennessee,0,0,2026,0,8,4
-Texas,Texas,1-9,7,2026,7,803,1
-Utah,Utah,100-499,117,2026,117,188,0
+Texas,Texas,10-49,21,2026,21,803,1
+Utah,Utah,100-499,149,2026,149,188,0
 Vermont,Vermont,1-9,1,2026,1,2,1
 Virginia,Virginia,1-9,9,2026,9,6,1
-Washington,Washington,10-49,24,2026,24,11,6
+Washington,Washington,10-49,26,2026,26,11,6
 West Virginia,Virginia Occidental,0,0,2026,0,0,1
 Wisconsin,Wisconsin,1-9,2,2026,2,36,1
 Wyoming,Wyoming,0,0,2026,0,15,0
