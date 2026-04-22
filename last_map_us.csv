@@ -1,14 +1,14 @@
 geography,geography_esp,cases_range,cases_calendar_year,year,cases_2026,cases_2025,cases_2024
 Alabama,Alabama,0,0,2026,0,1,0
 Alaska,Alaska,1-9,1,2026,1,4,0
-Arizona,Arizona,50-99,59,2026,59,221,5
+Arizona,Arizona,50-99,65,2026,65,222,5
 Arkansas,Arkansas,0,0,2026,0,8,0
-California,California,10-49,34,2026,34,26,13
-Colorado,Colorado,10-49,15,2026,15,35,0
+California,California,10-49,40,2026,40,26,13
+Colorado,Colorado,10-49,16,2026,16,35,0
 Connecticut,Connecticut,0,0,2026,0,1,0
 Delaware,Delaware,0,0,2026,0,0,0
 District of Columbia,Distrito de Columbia,0,0,2026,0,0,1
-Florida,Florida,100-499,129,2026,129,8,11
+Florida,Florida,100-499,130,2026,130,8,11
 Georgia,Georgia,1-9,2,2026,2,10,5
 Hawaii,Hawái,0,0,2026,0,2,0
 Idaho,Idaho,1-9,2,2026,2,14,0
@@ -37,17 +37,17 @@ North Carolina,Carolina del Norte,10-49,22,2026,22,2,1
 North Dakota,Dakota del Norte,10-49,27,2026,27,36,0
 Ohio,Ohio,10-49,11,2026,11,40,7
 Oklahoma,Oklahoma,1-9,1,2026,1,17,1
-Oregon,Oregón,10-49,11,2026,11,1,31
+Oregon,Oregón,10-49,17,2026,17,1,31
 Pennsylvania,Pensilvania,10-49,12,2026,12,16,6
 Rhode Island,Rhode Island,0,0,2026,0,1,0
 South Carolina,Carolina del Sur,500+,667,2026,667,333,1
 South Dakota,Dakota del Sur,1-9,8,2026,8,16,1
 Tennessee,Tennessee,0,0,2026,0,8,4
-Texas,Texas,100-499,176,2026,176,803,1
-Utah,Utah,100-499,408,2026,408,189,0
+Texas,Texas,100-499,180,2026,180,803,1
+Utah,Utah,100-499,414,2026,414,189,0
 Vermont,Vermont,1-9,1,2026,1,2,1
 Virginia,Virginia,10-49,16,2026,16,6,1
-Washington,Washington,10-49,33,2026,33,11,6
+Washington,Washington,10-49,37,2026,37,11,6
 West Virginia,Virginia Occidental,0,0,2026,0,0,1
 Wisconsin,Wisconsin,1-9,2,2026,2,36,1
 Wyoming,Wyoming,0,0,2026,0,15,0
